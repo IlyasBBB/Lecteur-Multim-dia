@@ -1,4 +1,4 @@
-# Lecteur Multimédia - École Centrale de Lyon
+# Lecteur Multimédia - École Centrale de Lyon - Ilyas BEN ALLA - Ayoub ASSEFFAR
 
 Un lecteur multimédia complet capable de lire des fichiers audio, vidéo et des images avec des fonctionnalités avancées.
 
@@ -20,7 +20,7 @@ Un lecteur multimédia complet capable de lire des fichiers audio, vidéo et des
 
 1. Clonez ce dépôt :
    ```
-   git clone <url-du-repo>
+   git clone <https://github.com/IlyasBBB/Lecteur-Multim-dia.git>
    cd media-player-ecl
    ```
 
@@ -96,7 +96,3 @@ npm run dev
 - **Frontend** : HTML5, CSS3, JavaScript (ES6+)
 - **Médias** : HTML5 Audio/Video API, Canvas API
 - **Style** : CSS personnalisé aux couleurs de l'ECL
-
-## Licence
-
-MIT 
