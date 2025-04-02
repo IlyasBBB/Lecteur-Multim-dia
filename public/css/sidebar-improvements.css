@@ -1,0 +1,380 @@
+/* Améliorations de la barre latérale */
+.no-library-items {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-library-items:before {
+    content: '\f07b';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    color: #b5a279;
+    opacity: 0.7;
+}
+
+/* Amélioration du style des éléments de la bibliothèque */
+.media-library-item {
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-left: 3px solid transparent;
+}
+
+.media-library-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateX(3px);
+}
+
+.media-library-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    border-left-color: #b5a279;
+}
+
+.media-library-thumbnail {
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.media-library-thumbnail i {
+    font-size: 1.5rem;
+    color: #c2b291;
+}
+
+.media-library-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.media-library-info h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0 0 0.3rem 0;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.media-library-info p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* Amélioration des boutons de mode */
+.mode-switch {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    padding: 0.7rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.mode-switch:hover {
+    transform: translateY(-2px);
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 0.9rem 0.5rem;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 33.33%;
+    min-width: 75px;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    transition: height 0.3s ease;
+}
+
+.mode-btn:hover:before {
+    height: 100%;
+}
+
+.mode-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.mode-btn:hover i {
+    transform: scale(1.15);
+}
+
+.mode-btn:hover {
+    color: white;
+}
+
+.mode-btn.active {
+    background: #c4122f;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mode-btn.active:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1.5px;
+}
+
+/* Zone de chargement et d'upload */
+.upload-area {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-area:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 10px 10px 0 0;
+}
+
+.upload-area:hover {
+    background: #c4122f;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: transparent;
+}
+
+.upload-area i {
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.upload-area:hover i {
+    transform: scale(1.1);
+}
+
+.upload-area p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.upload-area small {
+    display: block;
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+/* Amélioration de la barre latérale */
+.sidebar {
+    background: linear-gradient(to bottom, #8e2030, #7a1c29);
+    padding: 1.5rem 1rem;
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 30px);
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.sidebar:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+
+.app-header {
+    padding: 1rem 0.5rem 1.2rem 0.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.app-header:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: #b5a279;
+    border-radius: 2px;
+}
+
+.logo-container {
+    width: 130px;
+    height: 60px;
+    margin: 0 auto 12px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
+}
+
+.logo-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Amélioration du conteneur de la bibliothèque */
+.library-container {
+    overflow-y: auto;
+    flex: 1;
+    padding: 0.8rem;
+    margin-right: -0.5rem;
+    padding-right: 0.5rem;
+    scrollbar-width: thin;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Amélioration du défilement */
+.library-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.library-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.library-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.library-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Structure de la sidebar */
+.sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.library-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.sidebar h2 {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.5rem 0 1.2rem 0;
+    font-size: 1.3rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+}
+
+.sidebar h2:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #b5a279;
+    border-radius: 2px;
+}
+
+.sidebar h2 i {
+    font-size: 1.1rem;
+    color: #c2b291;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+} 
