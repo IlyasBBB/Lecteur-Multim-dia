@@ -1,0 +1,2243 @@
+/* Couleurs de l'École Centrale de Lyon */
+:root {
+    --ecl-bordeaux: #8e2030;
+    --ecl-bordeaux-light: #a52939;
+    --ecl-bordeaux-dark: #7a1c29;
+    --ecl-red: #c4122f;
+    --ecl-red-dark: #ae1029;
+    --ecl-red-light: #d42d47;
+    --ecl-beige: #b5a279;
+    --ecl-beige-light: #c2b291;
+    --ecl-beige-dark: #9e8d69;
+    --dark-bg: #ffffff;
+    --light-text: #333333;
+    --sidebar-bg: #8e2030;
+    --sidebar-text: rgba(255, 255, 255, 0.9);
+    --sidebar-text-muted: rgba(255, 255, 255, 0.7);
+    --sidebar-separator: rgba(255, 255, 255, 0.15);
+    --sidebar-hover: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f5f5f5;
+    color: var(--light-text);
+    min-height: 100vh;
+    padding-top: 30px; /* Pour compenser la barre supérieure beige */
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: calc(100vh - 30px); /* Ajusté pour la barre supérieure */
+    overflow: hidden;
+    padding-bottom: 0;
+    background-color: #f0f0f0;
+}
+
+/* Sidebar Styles - Couleurs ECL */
+.sidebar {
+    background: linear-gradient(to bottom, var(--ecl-bordeaux), var(--ecl-bordeaux-dark));
+    padding: 1.5rem 1rem;
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 30px); /* Ajusté pour la barre supérieure */
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.sidebar:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--sidebar-separator), transparent);
+}
+
+.app-header {
+    padding: 1rem 0.5rem 1.2rem 0.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--sidebar-separator);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.app-header:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: var(--ecl-beige);
+    border-radius: 2px;
+}
+
+.logo-container {
+    width: 130px;
+    height: 60px;
+    margin: 0 auto 12px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
+}
+
+.logo-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.app-header h1 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.app-header h1 i {
+    color: var(--ecl-beige);
+    font-size: 1.4rem;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.mode-switch {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    padding: 0.7rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.mode-switch:hover {
+    transform: translateY(-2px);
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 0.9rem 0.5rem;
+    border: none;
+    background: transparent;
+    color: var(--sidebar-text-muted);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 33.33%;
+    min-width: 75px;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    transition: height 0.3s ease;
+}
+
+.mode-btn:hover:before {
+    height: 100%;
+}
+
+.mode-btn i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.mode-btn:hover i {
+    transform: scale(1.15);
+}
+
+.mode-btn:hover {
+    color: white;
+}
+
+.mode-btn.active {
+    background: var(--ecl-red);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mode-btn.active:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1.5px;
+}
+
+/* Ajustements spécifiques pour chaque bouton de mode */
+.mode-btn[data-mode="youtube"].active {
+    background: var(--ecl-red);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mode-btn[data-mode="spotify"].active {
+    background: var(--ecl-red);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mode-btn[data-mode="local"].active {
+    background: var(--ecl-red);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.library-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.sidebar h2 {
+    color: var(--sidebar-text);
+    margin: 0.5rem 0 1.2rem 0;
+    font-size: 1.3rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--sidebar-separator);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+}
+
+.sidebar h2:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--ecl-beige);
+    border-radius: 2px;
+}
+
+.sidebar h2 i {
+    font-size: 1.1rem;
+    color: var(--ecl-beige-light);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.upload-area {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-area:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 10px 10px 0 0;
+}
+
+.upload-area:hover {
+    background: var(--ecl-red);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: transparent;
+}
+
+.upload-area i {
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.upload-area:hover i {
+    transform: scale(1.1);
+}
+
+.upload-area p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    font-weight: 500;
+    color: var(--sidebar-text);
+}
+
+.upload-area small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--sidebar-text-muted);
+    font-size: 0.85rem;
+}
+
+#fileInput {
+    display: none;
+}
+
+.library-container {
+    overflow-y: auto;
+    flex: 1;
+    padding: 0.8rem;
+    margin-right: -0.5rem;
+    padding-right: 0.5rem;
+    scrollbar-width: thin;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Stylisation des éléments de la bibliothèque */
+.media-library-item {
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-left: 3px solid transparent;
+    position: relative;
+}
+
+.media-library-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateX(3px);
+}
+
+.media-library-item.active {
+    background: rgba(255, 255, 255, 0.15);
+    border-left-color: var(--ecl-beige);
+}
+
+.media-library-thumbnail {
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.media-library-thumbnail i {
+    font-size: 1.5rem;
+    color: var(--ecl-beige-light);
+}
+
+.media-library-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-library-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.media-library-info h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0 0 0.3rem 0;
+    color: var(--sidebar-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.media-library-info p {
+    font-size: 0.75rem;
+    color: var(--sidebar-text-muted);
+    margin: 0;
+}
+
+/* Amélioration du défilement */
+.library-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.library-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.library-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.library-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Main Content Styles */
+.main-content {
+    padding: 1.5rem;
+    background: #f0f0f0;
+    background-image: linear-gradient(to bottom, rgba(196, 18, 47, 0.05), rgba(142, 32, 48, 0.08));
+    overflow-y: auto;
+    height: 100vh;
+    max-height: calc(100vh - 50px);
+}
+
+.now-playing {
+    background: linear-gradient(145deg, var(--ecl-bordeaux), var(--ecl-red));
+    border: none;
+    padding: 1.8rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 20px rgba(142, 32, 48, 0.2);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.now-playing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(100px, -100px);
+}
+
+.now-playing::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    transform: translate(-75px, 75px);
+}
+
+.media-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.8rem;
+    position: relative;
+    z-index: 2;
+}
+
+.media-thumbnail {
+    width: 180px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.media-thumbnail:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.media-thumbnail i {
+    font-size: 4rem;
+    color: white;
+    opacity: 0.8;
+}
+
+.media-details {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.media-details h3 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+}
+
+.media-details p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.media-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn i {
+    font-size: 1rem;
+    color: white;
+}
+
+.media-player {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    z-index: 2;
+}
+
+#mediaPlayer {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#mediaPlayer.active {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+}
+
+#audioPlayer {
+    width: 100%;
+    height: 60px;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-top: 0;
+    outline: none;
+}
+
+/* Styles personnalisés pour les contrôles audio/vidéo */
+audio::-webkit-media-controls-panel,
+video::-webkit-media-controls-panel {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+audio::-webkit-media-controls-play-button,
+video::-webkit-media-controls-play-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+/* Playlist Styles */
+.playlist-section {
+    margin-top: 1.5rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+    border-top: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.playlist-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, var(--ecl-bordeaux), var(--ecl-red));
+}
+
+.playlist-section h2 {
+    color: var(--ecl-bordeaux);
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(196, 18, 47, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+}
+
+.playlist-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--ecl-red);
+    border-radius: 2px;
+}
+
+.playlist-section h2 i {
+    color: var(--ecl-red);
+    font-size: 1.3rem;
+}
+
+.playlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Style pour l'état vide (no results) */
+.playlist-container:empty::after {
+    content: 'Aucun élément dans la liste de lecture';
+    display: block;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #888;
+    font-style: italic;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px dashed #ddd;
+}
+
+/* Animation pour l'apparition des éléments */
+.media-item {
+    animation: fadeInUp 0.4s ease forwards;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Décalage de l'animation pour créer un effet cascade */
+.media-item:nth-child(2) {
+    animation-delay: 0.05s;
+}
+.media-item:nth-child(3) {
+    animation-delay: 0.1s;
+}
+.media-item:nth-child(4) {
+    animation-delay: 0.15s;
+}
+.media-item:nth-child(5) {
+    animation-delay: 0.2s;
+}
+.media-item:nth-child(n+6) {
+    animation-delay: 0.25s;
+}
+
+.media-item {
+    background: white;
+    border-radius: 8px;
+    padding: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 10px rgba(142, 32, 48, 0.1);
+    position: relative;
+    border: none;
+    overflow: hidden;
+    min-height: 180px;
+}
+
+.media-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(196, 18, 47, 0.2);
+}
+
+.media-item-thumbnail {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+    margin-bottom: 0;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.media-item-thumbnail::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 60%, rgba(142, 32, 48, 0.5));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.media-item:hover .media-item-thumbnail::after {
+    opacity: 1;
+}
+
+.media-item-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.media-item:hover .media-item-thumbnail img {
+    transform: scale(1.1);
+}
+
+.media-item-content {
+    padding: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.media-item h4 {
+    color: var(--ecl-bordeaux);
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.media-item p {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.media-item small {
+    color: #777;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.media-item small i {
+    color: var(--ecl-red);
+}
+
+/* Badge de type média */
+.media-item::before {
+    content: attr(data-type);
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--ecl-bordeaux);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.media-item:hover::before {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Styles pour le media item activement sélectionné */
+.media-item.active {
+    background: linear-gradient(to bottom right, white, #f9f3f3);
+    box-shadow: 0 5px 15px rgba(196, 18, 47, 0.3);
+    border-left: 3px solid var(--ecl-red);
+}
+
+.media-item.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--ecl-red);
+}
+
+.media-item.active h4 {
+    color: var(--ecl-red);
+}
+
+/* Animation de pulse pour l'élément en cours de lecture */
+@keyframes pulse-border {
+    0% {
+        box-shadow: 0 0 0 0 rgba(196, 18, 47, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 5px rgba(196, 18, 47, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(196, 18, 47, 0);
+    }
+}
+
+.media-item.playing {
+    animation: pulse-border 2s infinite;
+}
+
+/* Styles pour les messages */
+.no-results, .error, .loading, .info-message, .success {
+    background: rgba(30, 30, 30, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    margin: 1rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.5s ease;
+}
+
+.error {
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+.success {
+    background: rgba(0, 100, 175, 0.1);
+    border: 1px solid rgba(0, 100, 175, 0.3);
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ecl-bordeaux);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ecl-red);
+}
+
+/* Amélioration de la zone de recherche */
+.search-area {
+    margin-bottom: 1.5rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+}
+
+.search-header i {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.search-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.search-type {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+#searchType {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 0.95rem;
+    padding: 0.3rem 0;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-weight: 500;
+}
+
+.search-input-wrapper {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.search-area input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.9rem 1rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.3px;
+}
+
+.search-area input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-area button {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    background: var(--ecl-red);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    flex-shrink: 0;
+    font-weight: 500;
+}
+
+.search-area button:hover {
+    background: var(--ecl-red-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.search-area button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Modifications pour les boutons spécifiques et les contrôles */
+.mode-btn[data-mode="youtube"].active ~ #searchArea button, 
+.mode-btn[data-mode="spotify"].active ~ #searchArea button {
+    background: var(--ecl-red);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.mode-btn[data-mode="youtube"].active ~ #searchArea button:hover, 
+.mode-btn[data-mode="spotify"].active ~ #searchArea button:hover {
+    background: var(--ecl-red-light);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Action Button */
+.action-btn {
+    background: var(--ecl-red);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    background: var(--ecl-red-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.action-btn i {
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* Style spécifique pour les contrôles audio */
+.yt-music-controls, .spotify-controls {
+    background: var(--ecl-bordeaux);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.yt-music-controls .control-btn, 
+.spotify-controls .control-btn {
+    color: white;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.yt-music-controls .control-btn:hover, 
+.spotify-controls .control-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Animation pour la recherche */
+@keyframes searchFocus {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.search-area:focus-within {
+    animation: searchFocus 0.3s ease;
+    border-color: #444;
+}
+
+.loading {
+    color: #b3b3b3;
+    text-align: center;
+    padding: 2rem;
+    background: #181818;
+    border-radius: 8px;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.loading::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #1DB954;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Info message style */
+.info-message {
+    background: #2a2a2a;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #1DB954;
+    font-size: 0.9rem;
+}
+
+.info-message p {
+    color: #b3b3b3;
+    margin: 0;
+}
+
+/* Rendre les liens cliquables dans les messages d'erreur */
+.error a {
+    color: #1DB954;
+    text-decoration: underline;
+}
+
+/* Specific Mode Styling */
+/* YouTube Mode */
+.mode-btn[data-mode="youtube"].active ~ .library-container .media-item {
+    border-left-color: #ff0000;
+}
+
+.mode-btn[data-mode="youtube"].active ~ .library-container .media-item:hover {
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.15);
+}
+
+.mode-btn[data-mode="youtube"].active ~ .library-container .media-item small i {
+    color: #ff0000;
+}
+
+/* Spotify Mode */
+.mode-btn[data-mode="spotify"].active ~ .library-container .media-item {
+    border-left-color: #1DB954;
+}
+
+.mode-btn[data-mode="spotify"].active ~ .library-container .media-item:hover {
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.15);
+}
+
+.mode-btn[data-mode="spotify"].active ~ .library-container .media-item small i {
+    color: #1DB954;
+}
+
+/* Spotify badges */
+.preview-badge, .premium-badge, .no-preview-badge {
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    margin-left: 5px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.preview-badge {
+    background: #1DB954;
+    color: white;
+}
+
+.premium-badge {
+    background: #9c27b0;
+    color: white;
+}
+
+.no-preview-badge {
+    background: #808080;
+    color: white;
+}
+
+/* Spotify Controls - Amélioration */
+.spotify-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+    background: linear-gradient(145deg, #282828, #222);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1DB954, #18a349);
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(29, 185, 84, 0.3);
+}
+
+.control-btn:hover {
+    background: linear-gradient(145deg, #1ed760, #1DB954);
+    transform: scale(1.08);
+    box-shadow: 0 5px 12px rgba(29, 185, 84, 0.4);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+#spotifyPlayPauseBtn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+}
+
+/* Notifications - Amélioration */
+.spotify-error-notification, .premium-required-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #282828;
+    border-left: 4px solid #e74c3c;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    z-index: 9999;
+    max-width: 350px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+/* Messages - Amélioration */
+.error, .success, .info-message, .loading {
+    padding: 1.5rem;
+    background: #181818;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success {
+    color: #1DB954;
+    text-align: left;
+    border-left: 4px solid #1DB954;
+}
+
+.success p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.success small {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+}
+
+/* Media player adjustments */
+#mediaPlayer {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: height 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#mediaPlayer.active {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+}
+
+.media-player {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.media-player iframe {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .app-container {
+        grid-template-columns: 280px 1fr;
+    }
+    
+    .sidebar {
+        width: 280px;
+        padding: 1.2rem;
+    }
+    
+    .logo-container {
+        width: 120px;
+        height: 50px;
+    }
+    
+    .ecl-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+    }
+    
+    .logo-container {
+        width: 100px;
+        height: 40px;
+    }
+    
+    .ecl-header {
+        padding: 0.8rem;
+    }
+    
+    .ecl-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .mode-btn i {
+        font-size: 1.2rem;
+    }
+    
+    .upload-area {
+        padding: 1.5rem;
+    }
+    
+    .playlist-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+}
+
+/* Style pour le bouton d'action */
+.media-actions {
+    margin-top: 1rem;
+}
+
+.action-btn {
+    background: var(--ecl-red);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    background: var(--ecl-red-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.action-btn i {
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* Style pour le texte d'instruction dans la zone d'upload */
+.upload-area small {
+    display: block;
+    margin-top: 0.5rem;
+    color: #b3b3b3;
+    font-size: 0.8rem;
+}
+
+/* Amélioration des transitions entre les modes */
+.sidebar h2, .playlist-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sidebar h2 i, .playlist-section h2 i {
+    color: #1DB954;
+}
+
+/* Style spécifique pour chaque mode */
+/* Mode Local */
+.mode-btn[data-mode="local"].active ~ #searchArea {
+    display: none !important;
+}
+
+.mode-btn[data-mode="local"].active ~ .upload-area {
+    display: block;
+}
+
+.mode-btn[data-mode="local"].active ~ h2 i {
+    color: #FF9800;
+}
+
+/* Mode YouTube */
+.mode-btn[data-mode="youtube"].active ~ h2 i {
+    color: #FF0000;
+}
+
+.mode-btn[data-mode="youtube"].active ~ .upload-area {
+    display: none;
+}
+
+.mode-btn[data-mode="youtube"].active ~ #searchArea {
+    display: flex !important;
+}
+
+.mode-btn[data-mode="youtube"].active ~ #searchArea #searchType option[value="music"],
+.mode-btn[data-mode="youtube"].active ~ #searchArea #searchType option[value="video"] {
+    display: block;
+}
+
+.mode-btn[data-mode="youtube"].active ~ #searchArea #searchType option[value="spotify"] {
+    display: none;
+}
+
+/* Mode Spotify */
+.mode-btn[data-mode="spotify"].active ~ h2 i {
+    color: #1DB954;
+}
+
+.mode-btn[data-mode="spotify"].active ~ .upload-area {
+    display: none;
+}
+
+.mode-btn[data-mode="spotify"].active ~ #searchArea {
+    display: flex !important;
+}
+
+.mode-btn[data-mode="spotify"].active ~ #searchArea #searchType option[value="spotify"] {
+    display: block;
+}
+
+.mode-btn[data-mode="spotify"].active ~ #searchArea #searchType option[value="music"],
+.mode-btn[data-mode="spotify"].active ~ #searchArea #searchType option[value="video"] {
+    display: none;
+}
+
+/* Amélioration de l'affichage du Spotify Embed */
+.media-player iframe {
+    margin-top: 1.5rem;
+    transition: opacity 0.3s ease;
+}
+
+/* Animation de transition entre les modes */
+.sidebar, .main-content, .media-item, .now-playing {
+    transition: all 0.3s ease;
+}
+
+/* Style pour la notification de succès */
+.success-info {
+    background: #1a2a1a;
+    border-left-color: #1DB954;
+    margin-bottom: 15px;
+}
+
+/* Style pour les éléments sans prévisualisations */
+.no-preview {
+    opacity: 0.85;
+    position: relative;
+}
+
+.no-preview::after {
+    content: '→ Ouvrir dans Spotify';
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    background: #1DB954;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.no-preview:hover::after {
+    opacity: 1;
+}
+
+.no-preview:hover {
+    background: #222;
+    transform: none;
+}
+
+/* Autres améliorations visuelles */
+::-webkit-scrollbar-thumb {
+    background: #1DB954;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #18a349;
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 8px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #1DB954;
+    animation: spin 1s linear infinite;
+}
+
+/* Styles pour les contrôles de YouTube Music */
+.yt-music-controls {
+    background: linear-gradient(to right, var(--ecl-bordeaux-dark), var(--ecl-bordeaux));
+    border-radius: 30px;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+
+.yt-music-controls .control-btn {
+    color: white;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.yt-music-controls .control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--ecl-beige);
+}
+
+.yt-music-progress {
+    flex-grow: 1;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.progress-filled {
+    background: #ff0000;
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+.time-display {
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+/* Style pour l'élément activement joué */
+.media-item.active {
+    border-left-color: #ff0000;
+    background: #282828;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.mode-btn[data-mode="spotify"].active ~ .library-container .media-item.active {
+    border-left-color: #1DB954;
+    background: #282828;
+    box-shadow: 0 0 10px rgba(29, 185, 84, 0.2);
+}
+
+/* Ajustement du #mediaPlayer pour transitions */
+#mediaPlayer {
+    transition: height 0.3s ease, visibility 0.3s ease;
+}
+
+/* Styles pour la barre de tâches et l'historique */
+.taskbar,
+.taskbar-left,
+.taskbar-right,
+.taskbar-history,
+.taskbar-btn,
+.history-item,
+.history-sidebar,
+.history-sidebar.hidden,
+.history-sidebar-item,
+.history-sidebar-thumbnail,
+.history-sidebar-info,
+.history-sidebar-source,
+.history-date-header,
+.no-history,
+.history-sidebar-empty {
+    display: none;
+}
+
+/* App Header avec bouton d'historique */
+.app-header {
+    padding: 0.5rem 0 1.8rem 0;
+    text-align: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.history-toggle-btn {
+    display: none;
+}
+
+/* État actif du bouton */
+.history-toggle-btn.active:after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    background: #1DB954;
+    border-radius: 50%;
+}
+
+/* Menu d'historique déroulant */
+.history-dropdown {
+    display: none;
+}
+
+/* Barre d'historique latérale */
+.history-sidebar {
+    background: linear-gradient(180deg, #121212, #1a1a1a);
+    width: 300px;
+    height: 100vh;
+    overflow: hidden;
+    border-left: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.history-sidebar.hidden {
+    transform: translateX(100%);
+}
+
+.history-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #333;
+    background: linear-gradient(145deg, #1a1a1a, #141414);
+}
+
+.history-header h3 {
+    font-size: 1.3rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.history-header h3 i {
+    color: #1DB954;
+}
+
+.history-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+/* Élément d'historique dans la barre latérale */
+.history-sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+}
+
+.history-sidebar-item:hover {
+    background: #282828;
+    transform: translateX(5px);
+}
+
+.history-sidebar-item.youtube {
+    border-left-color: #ff0000;
+}
+
+.history-sidebar-item.spotify {
+    border-left-color: #1DB954;
+}
+
+.history-sidebar-item.local {
+    border-left-color: #FFA000;
+}
+
+.history-sidebar-thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.history-sidebar-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.history-sidebar-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.history-sidebar-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+}
+
+.history-sidebar-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #b3b3b3;
+}
+
+.history-sidebar-source {
+    font-size: 0.75rem;
+    color: #808080;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 3px;
+}
+
+.history-sidebar-source i.fa-youtube {
+    color: #ff0000;
+}
+
+.history-sidebar-source i.fa-spotify {
+    color: #1DB954;
+}
+
+.history-sidebar-source i.fa-file-audio {
+    color: #FFA000;
+}
+
+.history-sidebar-source .timestamp {
+    margin-left: auto;
+    color: #666;
+}
+
+/* Animation pour l'apparition des éléments dans la barre latérale */
+.history-sidebar-item {
+    animation: slideInRight 0.3s ease;
+    transform-origin: right;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Style pour le bouton actif dans la taskbar */
+#toggleHistorySidebarBtn.active {
+    background: #1DB954;
+    color: white;
+}
+
+#toggleHistorySidebarBtn.active i {
+    color: white;
+}
+
+/* Amélioration visuelle pour la barre d'historique */
+.history-sidebar:not(.hidden) {
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Styles pour le survol des éléments d'historique */
+.history-sidebar-item:hover .history-sidebar-thumbnail img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.history-sidebar-thumbnail img {
+    transition: transform 0.3s ease;
+}
+
+/* Style pour les éléments vides */
+.history-sidebar-empty {
+    padding: 2rem;
+    text-align: center;
+    color: #808080;
+}
+
+/* Responsive design pour la barre d'historique */
+@media (max-width: 1400px) {
+    .app-container {
+        grid-template-columns: 280px 1fr;
+    }
+    
+    .history-sidebar {
+        width: 250px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .app-container {
+        grid-template-columns: 280px 1fr;
+    }
+    
+    .history-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        width: 280px;
+    }
+    
+    .history-sidebar.hidden {
+        transform: translateX(100%);
+    }
+}
+
+/* Ajouter un style pour le nouveau bouton dans la taskbar */
+#toggleHistorySidebarBtn i {
+    color: #1DB954;
+}
+
+/* Styles supplémentaires pour la barre d'historique latérale */
+.history-date-header {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1DB954;
+    margin: 1rem 0 0.5rem 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #333;
+    text-transform: capitalize;
+}
+
+.history-date-header:first-child {
+    margin-top: 0;
+}
+
+.no-history {
+    color: #808080;
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+}
+
+/* Animation pour l'apparition des éléments dans la barre latérale */
+.history-sidebar-item {
+    animation: slideInRight 0.3s ease;
+    transform-origin: right;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Style pour le bouton actif dans la taskbar */
+#toggleHistorySidebarBtn.active {
+    background: #1DB954;
+    color: white;
+}
+
+#toggleHistorySidebarBtn.active i {
+    color: white;
+}
+
+/* Amélioration visuelle pour la barre d'historique */
+.history-sidebar:not(.hidden) {
+    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Styles pour le survol des éléments d'historique */
+.history-sidebar-item:hover .history-sidebar-thumbnail img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.history-sidebar-thumbnail img {
+    transition: transform 0.3s ease;
+}
+
+/* Style pour les éléments vides */
+.history-sidebar-empty {
+    padding: 2rem;
+    text-align: center;
+    color: #808080;
+}
+
+.ecl-header {
+    margin-bottom: 1.5rem;
+    border-radius: 0;
+    padding: 1rem 1.2rem;
+    background: var(--ecl-bordeaux);
+    background-image: linear-gradient(to right, var(--ecl-bordeaux), var(--ecl-bordeaux-dark));
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.ecl-header::before {
+    content: none;
+}
+
+.ecl-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+}
+
+/* Barre supérieure */
+body:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: var(--ecl-beige);
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Modification des boutons d'action */
+.action-btn {
+    background: var(--ecl-red);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    background: var(--ecl-red-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.action-btn i {
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* Style spécifique pour les contrôles audio */
+.yt-music-controls, .spotify-controls {
+    background: var(--ecl-bordeaux);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.yt-music-controls .control-btn, 
+.spotify-controls .control-btn {
+    color: white;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.yt-music-controls .control-btn:hover, 
+.spotify-controls .control-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Adaptation du thème en mode responsive */
+@media (max-width: 1200px) {
+    .app-container {
+        grid-template-columns: 280px 1fr;
+    }
+    
+    .sidebar {
+        width: 280px;
+    }
+    
+    .logo-container {
+        width: 120px;
+        height: 50px;
+    }
+    
+    .ecl-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+    }
+    
+    .logo-container {
+        width: 100px;
+        height: 40px;
+    }
+    
+    .ecl-header {
+        padding: 0.8rem;
+    }
+    
+    .ecl-header h2 {
+        font-size: 1.1rem;
+    }
+}
+
+/* Couleurs personnalisées pour les badges de type média */
+.media-item[data-type="Audio"]::before {
+    background-color: #6b7fd7; /* Bleu pour audio */
+}
+
+.media-item[data-type="Vidéo"]::before {
+    background-color: #d74b4b; /* Rouge pour vidéo */
+}
+
+.media-item[data-type="Image"]::before {
+    background-color: #4caf50; /* Vert pour image */
+}
+
+/* Couleur d'icône spécifique pour chaque type */
+.media-item[data-type="Image"] .media-item-thumbnail i {
+    color: #4caf50;
+}
+
+.media-item[data-type="Audio"] .media-item-thumbnail i {
+    color: #6b7fd7;
+}
+
+.media-item[data-type="Vidéo"] .media-item-thumbnail i {
+    color: #d74b4b;
+}
+
+/* Message quand la bibliothèque est vide */
+.no-library-items {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 1rem;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* Message d'erreur pour les médias */
+.error-message {
+    padding: 2rem;
+    text-align: center;
+    background: rgba(220, 53, 69, 0.1);
+    border-radius: 8px;
+    margin: 1rem 0;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.error-message i {
+    font-size: 2rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.error-message p {
+    margin: 0;
+    line-height: 1.5;
+} 
+

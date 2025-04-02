@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaPlayer - École Centrale de Lyon</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar-improvements.css">
+    <link rel="stylesheet" href="css/media-player.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="https://www.ec-lyon.fr/sites/default/files/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar avec la bibliothèque -->
+        <div class="sidebar">
+            <div class="app-header">
+                <div class="logo-container">
+                    <!-- Logo de l'École Centrale de Lyon -->
+                    <img src="images (1).png" alt="Logo École Centrale de Lyon">
+                </div>
+                <h1><i class="fas fa-headphones-alt"></i> MediaPlayer</h1>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="mode-switch">
+                    <button class="mode-btn active" data-mode="local">
+                        <i class="fas fa-folder"></i> Local
+                    </button>
+                    <button class="mode-btn" data-mode="youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </button>
+                    <button class="mode-btn" data-mode="spotify">
+                        <i class="fab fa-spotify"></i> Spotify
+                    </button>
+                </div>
+                
+                <!-- Zone de recherche -->
+                <div class="search-area" id="searchArea" style="display: none;">
+                    <div class="search-header">
+                        <i class="fas fa-search"></i>
+                        <span class="search-title">Recherche</span>
+                    </div>
+                    <div class="search-body">
+                        <div class="search-type">
+                            <select id="searchType">
+                                <option value="music">YouTube Music</option>
+                                <option value="video">YouTube Videos</option>
+                                <option value="spotify">Spotify</option>
+                            </select>
+                        </div>
+                        <div class="search-input-wrapper">
+                            <input type="text" id="searchInput" placeholder="Rechercher de la musique ou des vidéos...">
+                            <button id="searchButton">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="library-section">
+                    <h2><i class="fas fa-list"></i> Bibliothèque</h2>
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-plus-circle"></i>
+                        <p>Ajouter des fichiers</p>
+                        <small>Glissez-déposez ou cliquez ici</small>
+                        <input type="file" id="fileInput" accept="audio/*,video/*,image/*" multiple>
+                    </div>
+                    <div class="library-container" id="libraryList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zone principale -->
+        <div class="main-content">
+            <div class="ecl-header">
+                <h2>Lecteur Multimédia - École Centrale de Lyon</h2>
+            </div>
+            <div class="now-playing">
+                <div class="media-info">
+                    <div class="media-thumbnail" id="mediaThumbnail">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="media-details">
+                        <h3 id="mediaTitle">Aucun fichier sélectionné</h3>
+                        <p id="mediaType"></p>
+                        <div class="media-actions">
+                            <button class="action-btn" id="addToPlaylistBtn">
+                                <i class="fas fa-plus"></i> Ajouter à la playlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="media-player">
+                    <div id="mediaPlayer"></div>
+                    <audio id="audioPlayer" controls style="display: none;"></audio>
+                </div>
+                
+                <!-- Contrôles de lecture pour les playlists -->
+                <div class="media-controls" id="mediaControls" style="display: none;">
+                    <button class="media-control-btn" id="prevButton">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="media-control-btn play-pause" id="playPauseButton">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="media-control-btn" id="nextButton">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+                
+                <!-- Info playlist en cours -->
+                <div class="playing-from-playlist" id="playingFromPlaylist" style="display: none;">
+                    <i class="fas fa-list"></i>
+                    <span>Lecture depuis la playlist: <strong id="currentPlaylistName"></strong></span>
+                </div>
+            </div>
+
+            <div class="playlist-section">
+                <h2><i class="fas fa-history"></i> Liste de lecture récente</h2>
+                <div class="playlist-container" id="playlistContainer"></div>
+            </div>
+            
+            <!-- Gestionnaire de playlists -->
+            <div class="playlist-manager">
+                <h3><i class="fas fa-list-ul"></i> Mes playlists</h3>
+                <div class="playlist-form">
+                    <input type="text" id="playlistNameInput" placeholder="Nom de la nouvelle playlist">
+                    <button id="createPlaylistBtn"><i class="fas fa-plus"></i> Créer</button>
+                </div>
+                <div class="playlists-list" id="playlistsList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bouton flottant pour créer des playlists -->
+    <div class="create-playlist-fab" id="createPlaylistFab">
+        <i class="fas fa-plus"></i>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html> 
