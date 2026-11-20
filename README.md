@@ -29,14 +29,16 @@ Un lecteur multimédia complet capable de lire des fichiers audio, vidéo et des
    npm install
    ```
 
-3. Démarrez le serveur :
+3. Copiez `.env.example` en `.env` et renseignez vos clés (Spotify et YouTube Data API). Le fichier `.env` n'est jamais versionné ; sans clés, la lecture locale fonctionne, seules les fonctions Spotify et YouTube sont désactivées.
+
+4. Démarrez le serveur (Node.js 22.9 ou plus récent) :
    ```
    npm start
    ```
 
-4. Accédez à l'application dans votre navigateur :
+5. Accédez à l'application dans votre navigateur :
    ```
-   http://localhost:3000
+   http://localhost:8000
    ```
 
 ## Structure du projet

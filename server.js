@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import querystring from 'querystring';
 import path from 'path';
-import fetch from 'node-fetch';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs';
@@ -21,9 +20,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Spotify configuration
-const CLIENT_ID = 'ID_SPOTIFY_RETIRE';
-const CLIENT_SECRET = 'SECRET_SPOTIFY_RETIRE';
-const REDIRECT_URI = 'http://localhost:8000/callback';
+// Clés lues dans l'environnement (fichier .env, voir .env.example) : jamais dans le code.
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI || 'http://localhost:8000/callback';
+if (!CLIENT_ID || !CLIENT_SECRET) console.warn('SPOTIFY_CLIENT_ID / SPOTIFY_CLIENT_SECRET absents : la connexion Spotify est désactivée.');
+
+// La clé YouTube sert côté navigateur : elle est transmise par cette route plutôt qu'écrite dans le JavaScript.
+app.get('/api/config', (req, res) => {
+    res.json({ youtubeApiKey: process.env.YOUTUBE_API_KEY || '' });
+});
 
 const scope = [
     'streaming',

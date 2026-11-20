@@ -14,7 +14,8 @@ class MediaPlayer {
         this.currentMedia = null;
         
         // YouTube API key
-        this.YOUTUBE_API_KEY = 'CLE_YOUTUBE_RETIREE';
+        this.YOUTUBE_API_KEY = '';
+        fetch('/api/config').then(r => r.json()).then(c => { this.YOUTUBE_API_KEY = c.youtubeApiKey; }).catch(() => {});
         this.currentMode = 'local';
         
         // YouTube Music base URL
